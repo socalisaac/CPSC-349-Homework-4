@@ -6,7 +6,7 @@
 
     var App = window.App;
     var Truck = App.Truck;
- 
+
     var firebasedatastore = App.firebasedatastore;
     var FormHandler = App.FormHandler;
     var Validation = App.Validation;
@@ -19,14 +19,14 @@
     var checkList = new CheckList(CHECKLIST_SELECTOR);
     checkList.addClickHandler(truck.deliverOrder.bind(truck));
     var formHandler = new FormHandler(FORM_SELECTOR);
-    formHandler.addSubmitHandler(function(data) {
+    formHandler.addSubmitHandler(function (data) {
         return truck.createOrder.call(truck, data)
-            .then(function() {
-                checkList.addRow.call(checkList, data);
-            },
-            function() { 
-                alert('Server unreachable. Try again later.');
-            });
+            .then(function () {
+                    checkList.addRow.call(checkList, data);
+                },
+                function () {
+                    alert('Server unreachable. Try again later.');
+                });
     });
 
     formHandler.addInputHandler(Validation.isCompanyEmail);
